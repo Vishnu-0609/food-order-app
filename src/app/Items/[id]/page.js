@@ -161,7 +161,7 @@ export default function ItemPage()
                         <img className="w-68" src={`${CurrentMenuItems?.image}`} alt="" />
                     </div>
                 </section>
-                <div className="my-12 px-24">
+                <div className="my-12 xl:px-24 lg:px-24 md:px-14 sm:px-4 px-2">
                     <div className="">
                         <h1 className="text-black xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-lg font-extrabold">ADD ON TO MAKE IT A MEAL</h1>
                     </div>

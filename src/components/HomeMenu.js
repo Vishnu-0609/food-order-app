@@ -32,14 +32,14 @@ function HomeMenu() {
             <div className='mt-8'>
               <SectionHeaders mainHeader={"Non Vegetarian Items"} subHeader={"Check Out Non Vegetarian"}/>
             </div>
-            <div className='grid grid-cols-3 gap-4 mt-8 px-4'>
+            <div className='grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 grid-cols-1 gap-4 mt-8 px-4'>
                 {bestSellers.length > 0 && bestSellers.map((menuItem)=>(
                     <MenuItems key={menuItem._id} name={menuItem.name} image={menuItem.image} description={menuItem.description} basePrice={menuItem.basePrice}/>
                 ))}
             </div>
           </div>
           <div>
-            <Link href={"/NonVeg"} className='bg-primary uppercase gap-4 text-white px-14 py-3 rounded-full text-xl items-center font-[1000] font-serif'>CHECK OUT NON-VEG</Link>
+            <Link href={"/NonVeg"} className='bg-primary uppercase gap-4 text-white px-14 py-3 rounded-full xl:text-lg lg:text-lg md:text-lg sm:text-md text-sm items-center font-[1000] font-serif'>CHECK OUT NON-VEG</Link>
           </div>
         </section>
     </section>

@@ -3,6 +3,8 @@ import "./globals.css";
 import Header from "../components/Header"
 import { AppProvider } from "../components/AppContext.js";
 import { Toaster } from "react-hot-toast";
+import Image from "next/image";
+import Link from "next/link";
 
 const roboto = Roboto({ subsets: ["latin"],weight:['400','500','700'] });
 
@@ -20,8 +22,36 @@ export default function RootLayout({ children }) {
             <Toaster/>
             <Header/>
             {children}
-            <footer className="bg-[#383434] p-4 text-center text-white">
-              &copy; 2024 All rights reserved
+            <footer className="bg-[#e02c1c] p-4 xl:px-36 lg:px-16 md:px-24 sm:px-16 px-10">
+              <div className="text-center text-white grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 grid-cols-1 gap-16 border-t-2">
+                <div className="flex flex-col justify-center pt-16 pb-8 gap-8">
+                  <img src="cicis_footer-logo.svg" alt="" />
+                  <div className="flex gap-6">
+                    <Link href={"/"}><img src="/footer_fb_icon.webp" className="h-6" alt="" /></Link>
+                    <Link href={"/"}><img src="/footer_youtube_icon.webp" className="h-6" alt="" /></Link>
+                    <Link href={"/"}><img src="/footer_twitter_icon.webp" className="h-6" alt="" /></Link>
+                    <Link href={"/"}><img src="/footer_instagram_icon.webp" className="h-6" alt="" /></Link>
+                  </div>
+                </div>
+                <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 grid-cols-1 text-lg">
+                  <div className="flex flex-col justify-center xl:items-start items-center gap-2 py-2">
+                    <Link href={"/"}>FAQ</Link>
+                    <Link href={"/"}>Contact Us</Link>
+                    <Link href={"/"}>Our Story</Link>
+                    <Link href={"/"}>Order Online</Link>
+                  </div>
+                  <div className="flex flex-col justify-center xl:items-start items-center gap-2 py-2">
+                    <Link href={"/"}>Careers</Link>
+                    <Link href={"/"}>Privacy Policy</Link>
+                    <Link href={"/"}>Terms & Conditions</Link>
+                    <Link href={"/"}>Franchising</Link>
+                  </div>
+                  <div className="flex flex-col justify-center xl:items-start items-center gap-2 py-2">
+                    <Link href={"/"}>Nutrition</Link>
+                    <Link href={"/"}>Ingredients Statements</Link>
+                  </div>
+                </div>
+              </div>
             </footer>
           </AppProvider>  
         </main>

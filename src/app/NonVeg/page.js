@@ -47,7 +47,7 @@ export default function NonVegPage()
                                 </figure>
                                 <article className="slide__text">
                                     <h2 className="text-2xl font-extrabold">{Item.name}</h2>
-                                    <Link href={`/Items/${Item._id}`} type='button' className='text-primary font-black font-mono rounded-full px-8 py-2 mt-4 flex mx-auto justify-center hover:underline'><span>VIEW MENU ITEM</span><ChevronRight/></Link>
+                                    <Link href={`/Items/${Item._id}`} type='button' className='text-primary xl:text-lg lg:text-lg md:text-lg sm:text-md text-sm font-black font-mono rounded-full px-8 py-2 mt-4 flex mx-auto justify-center hover:underline'><span>VIEW MENU ITEM</span><ChevronRight/></Link>
                                 </article>
                             </div>
                         ))}

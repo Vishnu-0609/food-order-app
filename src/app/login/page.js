@@ -1,10 +1,8 @@
 "use client";
 import React, { useState } from 'react'
 import Image from 'next/image'
-import axios from 'axios';
-import Link from 'next/link';
 import { signIn } from "next-auth/react"
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
 function LoginPage() {
     const session = useSession();
@@ -15,23 +13,20 @@ function LoginPage() {
     const handleFormSubmit=async (e)=>
     {
       e.preventDefault();
-      console.log("hii");
       setloginprogress(true);
       
-      // signIn('credentials',{email,password});
-      await signIn('credentials',{email,password});
+      signIn('credentials',{email,password});
 
       setloginprogress(false);
-      console.log(session);
     }
 
   return (
     <section className='mt-28 my-4'>
         <h1 className='text-center text-primary text-4xl mb-4'>Login</h1>
-        <form className='block max-w-xl mx-auto' onSubmit={handleFormSubmit}>
+        <form className='block max-w-xl mx-auto'>
             <input type="email" name='email' placeholder='Email' value={email} disabled={loginprogress} onChange={(e)=>setemail(e.target.value)}/>
             <input type="password" name='password' placeholder='password' value={password} disabled={loginprogress} onChange={(e)=>setpassword(e.target.value)}/>
-            <button type='submit' className='btn submit' disabled={loginprogress}>Login</button>
+            <button type='button' onClick={handleFormSubmit} className='btn submit' disabled={loginprogress}>Login</button>
             <div className='my-4 text-center text-gray-500'>
                 or login with provider
             </div>

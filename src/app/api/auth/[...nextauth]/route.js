@@ -1,16 +1,14 @@
-import NextAuth from "next-auth"
+import NextAuth,{NextAuthOptions} from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import mongoose from "mongoose";
 import { User } from "../../../models/User";
 import bcrypt from 'bcrypt';
 import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import clientPromise from "../../../../libs/mongoConnect.js";
-import { getServerSession } from "next-auth";
+import clientPromise from "../../../../libs/mongoConnect.ts";
 
 export const authOptions = {
   secret:process.env.SECRET,
-  adapter:MongoDBAdapter(clientPromise),
   providers:[
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -20,32 +18,43 @@ export const authOptions = {
         name: 'credentials',
         id:'credentials',
         credentials: {
-          email: { label: "Email", type: "email", placeholder: "test@gmail.com" },
-          password: { label: "Password", type: "password" }
+          email: { label: "Email" , placeholder: "test@gmail.com" },
+          password: { label: "Password" , placeholder: "password" }
         },
         async authorize(credentials, req) {
-          const email= credentials?.email;
-          const password= credentials?.password;
-          // console.log(email);
-          // console.log(password);
-          const session = await getServerSession(authOptions);
-          
-          await mongoose.connect(process.env.MONGO_URL);
-          const user = await User.findOne({email});
-          console.log(user);
-          const passwordok=user && bcrypt.compareSync(password,user.password);
-          console.log(passwordok);
-          // console.log("User Details= "+user);
-          
-          if(passwordok)
+          if(!credentials || !credentials?.email || !credentials?.password)
           {
-            return session;
+            return null;
           }
-
-          return null
+          else
+          {
+            const email= credentials?.email;
+            const password= credentials?.password;
+            // const session = await getServerSession(authOptions);
+            
+            await mongoose.connect(process.env.MONGO_URL);
+            const user = await User.findOne({email});
+            console.log(user);
+            const passwordok=user && bcrypt.compareSync(password,user.password);
+            console.log(passwordok);
+            
+            if(passwordok)
+            {
+              return user;
+            }
+            else
+            {
+              return null;
+            }
+          }
         }
       })    
-  ]
+  ],
+  pages : {
+    signIn:"/auth",
+  },
+  debug: process.env.NODE_ENV === "development",
+  // adapter:MongoDBAdapter(clientPromise),
 }
 
 const handler = NextAuth(authOptions)

@@ -1,10 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 import Right from './Icons/Right'
+import Link from 'next/link'
 
 function Hero() {
   return (
-    <section className='relative ps-10 e mt-4 max-h-100 background-image flex flex-wrap bg-[#f4f3e9]'>
+    <section className='relative xl:ps-10 lg:ps-10 md:ps-10 sm:ps-4 ps-4 e mt-4 max-h-100 background-image flex flex-wrap bg-[#f4f3e9]'>
       <div className='py-12 p-4 text-start'>
         <div className='mt-10 flex items-center'>
           <div className='h-1 w-12 bg-[#f4f3e9] mr-4'></div>
@@ -13,14 +14,14 @@ function Hero() {
           </div>
           <div className='h-1 w-12 bg-[#f4f3e9] ml-4'></div>
         </div>
-        <h1 className='font-serif font-black text-white text-6xl py-6'>
+        <h1 className='font-serif font-black text-white xl:text-6xl text-5xl py-6'>
           Everything<br/>
           is better<br/>
           with a&nbsp;
           <span className='text-primary'>Pizza</span></h1>
         <p className='my-4 text-gray-300 text-lg pb-2 leading-6'>Pizza is the missing pieces that<br/>makes every day complete, a simple yet delicious joy in life</p>
         <div className='flex gap-4 text-sm'>
-          <button className='bg-[#f4f3e9] flex uppercase gap-4 text-primary px-8 py-2 rounded-full text-2xl items-center font-[1000]'>Order Now<Right/></button>
+          <Link href={'menu/PIZZAS'} className='bg-[#f4f3e9] flex uppercase gap-4 text-primary px-8 py-2 rounded-full text-2xl items-center font-[1000]'>Order Now<Right/></Link>
         </div>
       </div> 
       <div className='relative flex align-bottom justify-center overflow-hidden'>
